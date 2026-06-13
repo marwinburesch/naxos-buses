@@ -41,9 +41,15 @@ GitHub Pages is configured to build from the `gh-pages` branch (Settings → Pag
 
 ## Data
 
-The timetable in `src/data.js` was **hand-transcribed** from the naxosbuses.com schedule (18–29 May 2026 snapshot) — treat it as best-effort, not gospel. Verify time-critical trips (last bus, ferry connections) with the operator: **+30 22850 22291**.
+`src/data.js` holds **multiple seasonal schedules** in a `SCHEDULES` array, each with a `validFrom`/`validTo` range. The app **auto-selects the schedule covering today's date** and shows a switcher so the user can preview the others (the one covering today is marked "· now").
 
-To refresh: re-read the schedule and `routes/<slug>/` pages and regenerate `src/data.js` in the same shape. The schema allows a `weekdays` array (fills Mon–Fri) plus optional `sat`/`sun`, and explicit per-day keys (`mon`…`sun`) for day-specific services. An empty/absent array for a day means no service.
+Current schedules:
+- **Until 15 Jun** (18 May – 15 Jun 2026)
+- **From 16 Jun** (16 – 30 Jun 2026), from the [spring-season-2 table](https://naxosbuses.com/bus-schedules-spring-season-2/)
+
+All timetables were **hand-transcribed** — treat them as best-effort, not gospel. Verify time-critical trips (last bus, ferry connections) with the operator: **+30 22850 22291**.
+
+To add/refresh a schedule: re-read the relevant naxosbuses.com schedule page and add (or update) an entry in `SCHEDULES`. Per destination, the schema allows a `weekdays` array (fills Mon–Fri) plus optional `sat`/`sun`, and explicit per-day keys (`mon`…`sun`) for day-specific services. An empty/absent array for a day means no service. Times use the operator's `24:00`/`24:35` past-midnight notation.
 
 ## Disclaimer
 
