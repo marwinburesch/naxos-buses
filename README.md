@@ -23,9 +23,19 @@ npm run preview  # preview the production build
 
 ## Deploy
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds and publishes to GitHub Pages.
+Live at **https://marwinburesch.github.io/naxos-buses/**.
 
-One-time setup: repo **Settings → Pages → Source = GitHub Actions**. The site then serves at `https://<user>.github.io/naxos-buses/`.
+Deployment publishes the built `dist/` to the `gh-pages` branch, which GitHub Pages serves:
+
+```bash
+npm run deploy   # builds and pushes dist/ to the gh-pages branch
+```
+
+GitHub Pages is configured to build from the `gh-pages` branch (Settings → Pages).
+
+> An automated "build on push to `main`" GitHub Actions workflow is available but
+> not yet enabled — it requires a token with the `workflow` scope to commit. See
+> the open issue in this repo for the workflow file and one-step enablement.
 
 > The Vite `base` in `vite.config.js` is `/naxos-buses/` to match the repo name. Change it if you rename the repo or host it elsewhere.
 
